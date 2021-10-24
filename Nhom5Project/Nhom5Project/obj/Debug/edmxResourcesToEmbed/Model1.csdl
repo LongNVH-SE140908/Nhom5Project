@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DKIEN">
+    <Key>
+      <PropertyRef Name="MAMH" />
+      <PropertyRef Name="MAMH_TRUOC" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAMH_TRUOC" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MHOC" Relationship="Self.FK_DKIEN_MAMH" FromRole="DKIEN" ToRole="MHOC" />
+  </EntityType>
+  <EntityType Name="HPHAN">
+    <Key>
+      <PropertyRef Name="MAHP" />
+    </Key>
+    <Property Name="MAHP" Type="Int32" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HOCKI" Type="Int32" />
+    <Property Name="NAM" Type="Int32" />
+    <Property Name="GV" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MHOC" Relationship="Self.FK_HPHAN_MAMH" FromRole="HPHAN" ToRole="MHOC" />
+    <NavigationProperty Name="KQUAs" Relationship="Self.FK_KQUA_MAHP" FromRole="HPHAN" ToRole="KQUA" />
+  </EntityType>
+  <EntityType Name="KHOA">
+    <Key>
+      <PropertyRef Name="MAKHOA" />
+    </Key>
+    <Property Name="MAKHOA" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENKHOA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAMTHANHLAP" Type="Int32" />
+    <NavigationProperty Name="MHOCs" Relationship="Self.FK_MHOC_MAKH" FromRole="KHOA" ToRole="MHOC" />
+    <NavigationProperty Name="SVIENs" Relationship="Self.FK_SVIEN_MAKHOA" FromRole="KHOA" ToRole="SVIEN" />
+  </EntityType>
+  <EntityType Name="KQUA">
+    <Key>
+      <PropertyRef Name="MASV" />
+      <PropertyRef Name="MAHP" />
+    </Key>
+    <Property Name="MASV" Type="Int32" Nullable="false" />
+    <Property Name="MAHP" Type="Int32" Nullable="false" />
+    <Property Name="DIEM" Type="Double" />
+    <NavigationProperty Name="HPHAN" Relationship="Self.FK_KQUA_MAHP" FromRole="KQUA" ToRole="HPHAN" />
+    <NavigationProperty Name="SVIEN" Relationship="Self.FK_KQUA_MASV" FromRole="KQUA" ToRole="SVIEN" />
+  </EntityType>
+  <EntityType Name="MHOC">
+    <Key>
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="TENMH" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TINCHI" Type="Int32" />
+    <Property Name="MAKH" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DKIENs" Relationship="Self.FK_DKIEN_MAMH" FromRole="MHOC" ToRole="DKIEN" />
+    <NavigationProperty Name="HPHANs" Relationship="Self.FK_HPHAN_MAMH" FromRole="MHOC" ToRole="HPHAN" />
+    <NavigationProperty Name="KHOA" Relationship="Self.FK_MHOC_MAKH" FromRole="MHOC" ToRole="KHOA" />
+  </EntityType>
+  <EntityType Name="SVIEN">
+    <Key>
+      <PropertyRef Name="MASV" />
+    </Key>
+    <Property Name="TEN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MASV" Type="Int32" Nullable="false" />
+    <Property Name="NAM" Type="Int32" />
+    <Property Name="MAKH" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAMSINH" Type="DateTime" Precision="0" />
+    <Property Name="GIOITINH" Type="Boolean" />
+    <NavigationProperty Name="KHOA" Relationship="Self.FK_SVIEN_MAKHOA" FromRole="SVIEN" ToRole="KHOA" />
+    <NavigationProperty Name="KQUAs" Relationship="Self.FK_KQUA_MASV" FromRole="SVIEN" ToRole="KQUA" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_DKIEN_MAMH">
+    <End Role="MHOC" Type="Self.MHOC" Multiplicity="1" />
+    <End Role="DKIEN" Type="Self.DKIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MHOC">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="DKIEN">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HPHAN_MAMH">
+    <End Role="MHOC" Type="Self.MHOC" Multiplicity="1" />
+    <End Role="HPHAN" Type="Self.HPHAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MHOC">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="HPHAN">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQUA_MAHP">
+    <End Role="HPHAN" Type="Self.HPHAN" Multiplicity="1" />
+    <End Role="KQUA" Type="Self.KQUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HPHAN">
+        <PropertyRef Name="MAHP" />
+      </Principal>
+      <Dependent Role="KQUA">
+        <PropertyRef Name="MAHP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MHOC_MAKH">
+    <End Role="KHOA" Type="Self.KHOA" Multiplicity="0..1" />
+    <End Role="MHOC" Type="Self.MHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="MAKHOA" />
+      </Principal>
+      <Dependent Role="MHOC">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SVIEN_MAKHOA">
+    <End Role="KHOA" Type="Self.KHOA" Multiplicity="1" />
+    <End Role="SVIEN" Type="Self.SVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="MAKHOA" />
+      </Principal>
+      <Dependent Role="SVIEN">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQUA_MASV">
+    <End Role="SVIEN" Type="Self.SVIEN" Multiplicity="1" />
+    <End Role="KQUA" Type="Self.KQUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SVIEN">
+        <PropertyRef Name="MASV" />
+      </Principal>
+      <Dependent Role="KQUA">
+        <PropertyRef Name="MASV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSVienEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DKIENs" EntityType="Self.DKIEN" />
+    <EntitySet Name="HPHANs" EntityType="Self.HPHAN" />
+    <EntitySet Name="KHOAs" EntityType="Self.KHOA" />
+    <EntitySet Name="KQUAs" EntityType="Self.KQUA" />
+    <EntitySet Name="MHOCs" EntityType="Self.MHOC" />
+    <EntitySet Name="SVIENs" EntityType="Self.SVIEN" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_DKIEN_MAMH" Association="Self.FK_DKIEN_MAMH">
+      <End Role="MHOC" EntitySet="MHOCs" />
+      <End Role="DKIEN" EntitySet="DKIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HPHAN_MAMH" Association="Self.FK_HPHAN_MAMH">
+      <End Role="MHOC" EntitySet="MHOCs" />
+      <End Role="HPHAN" EntitySet="HPHANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQUA_MAHP" Association="Self.FK_KQUA_MAHP">
+      <End Role="HPHAN" EntitySet="HPHANs" />
+      <End Role="KQUA" EntitySet="KQUAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MHOC_MAKH" Association="Self.FK_MHOC_MAKH">
+      <End Role="KHOA" EntitySet="KHOAs" />
+      <End Role="MHOC" EntitySet="MHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SVIEN_MAKHOA" Association="Self.FK_SVIEN_MAKHOA">
+      <End Role="KHOA" EntitySet="KHOAs" />
+      <End Role="SVIEN" EntitySet="SVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQUA_MASV" Association="Self.FK_KQUA_MASV">
+      <End Role="SVIEN" EntitySet="SVIENs" />
+      <End Role="KQUA" EntitySet="KQUAs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
