@@ -16,5 +16,11 @@ namespace ProjectNhom5
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            QLSVienEntities ql = new QLSVienEntities();
+            var a = ql.KHOAs.ToList();
+        }
     }
 }

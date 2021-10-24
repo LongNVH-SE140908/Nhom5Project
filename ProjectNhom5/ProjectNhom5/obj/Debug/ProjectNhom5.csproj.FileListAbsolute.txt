@@ -1,0 +1,14 @@
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\ProjectNhom5.exe.config
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\ProjectNhom5.exe
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\ProjectNhom5.pdb
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\EntityFramework.dll
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\EntityFramework.xml
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.csproj.AssemblyReference.cache
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.Properties.Resources.resources
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.csproj.GenerateResource.cache
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.csproj.CoreCompileInputs.cache
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.exe
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.pdb
+C:\Users\longl\Desktop\project nhom 5\Nhom5Project\ProjectNhom5\ProjectNhom5\obj\Debug\ProjectNhom5.Form1.resources
