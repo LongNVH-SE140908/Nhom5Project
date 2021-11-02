@@ -86,10 +86,10 @@ namespace Nhom5Project
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // xử lí khi chọn comobox
-            var idSl = comboBox1.SelectedItem.ToString();
-            if (!string.IsNullOrEmpty(idSl))//check khac null hoac "" thi lam
+            var idSelect = comboBox1.SelectedItem.ToString();
+            if (!string.IsNullOrEmpty(idSelect))//check khac null hoac "" thi lam
             {
-                var student = stu.getSVByID(int.Parse(idSl));
+                var student = stu.getSVByID(int.Parse(idSelect));
                 if (student != null)
                 {
                     string hoSv = student.TEN.Split(' ')[0]; // cắt khoảng trắng của tên và lấy chữ đầu
@@ -111,15 +111,17 @@ namespace Nhom5Project
                         string maMh = item.MAMH;
                         string tenMh = item.MHOC.TENMH;
                         double diem = (double)item.KQUAs.Where(x => x.MAHP == item.MAHP).FirstOrDefault().DIEM;
-                        var stukq = new StudentGV()
+                        var stketqua = new StudentGV()
                         {
                             MaMh = maMh,
                             TenMh = tenMh,
                             DiemThi = diem
                         };
-                        lst.Add(stukq);
+                        lst.Add(stketqua);
                         
                     }
+
+                    // biding du lieu vao datagird view
                     BindingSource binding = new BindingSource();
                     binding.DataSource = lst;
 

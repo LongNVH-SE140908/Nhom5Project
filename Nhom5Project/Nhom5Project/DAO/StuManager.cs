@@ -39,14 +39,22 @@ namespace Nhom5Project.DAO
         }
         public List<SVIEN> findSv(string data = "")
         {
-            data= data.ToLower();
-            return ql.SVIENs.Where(x =>
-                x.TEN.Contains(data) ||
-                x.MASV.ToString().Contains(data) ||
-                x.NAMSINH.ToString().Contains(data) ||
-                x.KHOA.MAKHOA.ToLower().Contains(data)||
-                x.KHOA.TENKHOA.ToLower().Contains(data)
-                ).ToList();
+            try
+            {
+                data = data.ToLower();
+                return ql.SVIENs.Where(x =>
+                    x.TEN.ToLower().Contains(data) ||
+                    x.MASV.ToString().Contains(data) ||
+                    x.NAMSINH.ToString().Contains(data) ||
+                    x.KHOA.MAKHOA.ToLower().Contains(data) ||
+                    x.KHOA.TENKHOA.ToLower().Contains(data)
+                    ).ToList();
+            }
+            catch (Exception)
+            {
+
+                return new List<SVIEN>();
+            }
         }
     }
 }
